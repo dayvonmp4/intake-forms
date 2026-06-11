@@ -3,27 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quick Questions</title>
-  <meta property="og:title" content="Quick Questions">
-  <meta property="og:description" content="A few quick questions before our Zoom call.">
-  <meta name="description" content="A few quick questions before our Zoom call.">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <title>Quick Questions — Tattoo Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     @property --a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 
     :root {
-      --font-display: 'Nunito';
-      --font-body: 'Nunito';
-      --bg: #f2f8f2;
-      --surface: #ffffff;
-      --text: #0a1a0c;
-      --text-muted: #636363;
-      --border: #c4dcc4;
-      --input-bg: #f6fcf6;
-      --placeholder: #636363;
-      --accent: #236b2e;
-      --accent-bg: rgba(35,107,46,0.08);
-      --accent-glow: rgba(35,107,46,0.3);
+      --font-display: 'Anton';
+      --font-body: 'Karla';
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --text: #e0e0e0;
+      --text-muted: #767676;
+      --border: #222222;
+      --input-bg: #181818;
+      --placeholder: #767676;
+      --accent: #be2525;
+      --accent-bg: rgba(190,37,37,0.1);
+      --accent-glow: rgba(190,37,37,0.4);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,37 +37,47 @@
       content: '';
       position: fixed; inset: 0; z-index: 9999; pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      background-size: 200px 200px; opacity: 0.025;
+      background-size: 200px 200px; opacity: 0.04;
     }
 
     @keyframes beam-spin { to { --a: 360deg; } }
     @keyframes glow-pulse {
       0%, 100% { box-shadow: 0 0 8px 1px var(--accent-glow); }
-      50% { box-shadow: 0 0 14px 3px var(--accent-glow); }
+      50% { box-shadow: 0 0 16px 4px var(--accent-glow); }
     }
 
-    .wrap { max-width: 688px; margin: 0 auto; padding: 60px 24px 100px; }
+    .wrap { max-width: 688px; margin: 0 auto; padding: 60px 24px 100px; position: relative; z-index: 1; }
+
+    body::before {
+      content: '';
+      position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%);
+      width: 600px; height: 400px; pointer-events: none; z-index: 0;
+      background: radial-gradient(ellipse at center, rgba(190,37,37,0.05) 0%, transparent 70%);
+    }
 
     .form-brand {
-      font-size: 0.68rem; font-weight: 700; color: var(--text-muted);
+      font-size: 0.68rem; font-weight: 500; color: var(--text-muted);
       letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 28px;
+      font-family: var(--font-body), sans-serif;
     }
 
     .beam-wrap {
       width: 100%; padding: 1.5px; border-radius: 24px;
       background: conic-gradient(from var(--a), var(--border) 0deg, var(--border) 348deg, var(--accent) 356deg, var(--border) 364deg);
       animation: beam-spin 4s linear infinite;
+      box-shadow: 0 0 50px rgba(190,37,37,0.06), 0 20px 60px rgba(0,0,0,0.6);
     }
 
     .card {
       background: var(--surface); border-radius: 22.5px; padding: 44px 40px 52px;
-      box-shadow: 0 4px 24px rgba(35,107,46,0.07), 0 1px 3px rgba(0,0,0,0.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 40px 100px rgba(0,0,0,0.7);
     }
 
     .form-title {
       font-family: var(--font-display), sans-serif;
-      font-size: clamp(1.4rem, 4.5vw, 2rem); font-weight: 800; color: var(--text);
-      line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 10px;
+      font-size: clamp(2rem, 6.5vw, 3.6rem); font-weight: 400; color: var(--text);
+      line-height: 1.03; letter-spacing: 0.02em; margin-bottom: 10px;
+      text-shadow: 0 0 60px rgba(190,37,37,0.08);
       text-wrap: balance;
     }
 
@@ -84,20 +91,20 @@
       transition: width 0.65s cubic-bezier(0.16, 1, 0.3, 1);
       animation: glow-pulse 3s ease-in-out infinite;
     }
-    .progress-count { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); white-space: nowrap; min-width: 40px; text-align: right; }
-    .progress-count b { color: var(--accent); }
+    .progress-count { font-size: 0.7rem; font-weight: 500; color: var(--text-muted); white-space: nowrap; min-width: 40px; text-align: right; }
+    .progress-count b { color: var(--accent); font-weight: 600; }
 
     .page { display: none; }
     .page.active { display: block; }
 
     .section-label {
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 32px; opacity: 0.8;
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 32px; opacity: 0.75;
     }
 
     .question { margin-bottom: 36px; }
-    .q-num { font-size: 0.62rem; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
-    .q-text { font-size: 0.95rem; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 12px; }
+    .q-num { font-size: 0.62rem; font-weight: 600; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+    .q-text { font-size: 0.95rem; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 12px; }
     .q-hint { font-size: 0.78rem; color: var(--text-muted); margin-top: -6px; margin-bottom: 10px; line-height: 1.55; }
 
     textarea {
@@ -109,11 +116,11 @@
     }
     textarea:focus { border-color: var(--accent); }
     textarea::placeholder { color: var(--placeholder); font-style: italic; }
+
     input[type="text"] {
       width: 100%; background: var(--input-bg); border: 1.5px solid var(--border); border-radius: 10px;
       padding: 12px 14px; font-family: var(--font-body), sans-serif; font-size: 0.88rem;
-      font-weight: 400; color: var(--text); outline: none;
-      transition: border-color 0.2s;
+      font-weight: 400; color: var(--text); outline: none; transition: border-color 0.2s;
     }
     input[type="text"]:focus { border-color: var(--accent); }
     input[type="text"]::placeholder { color: var(--placeholder); font-style: italic; }
@@ -131,7 +138,7 @@
       cursor: pointer; transition: all 0.15s; user-select: none;
     }
     .vibe-opt input[type="radio"]:checked + span {
-      border-color: var(--accent); background: var(--accent-bg); color: var(--accent); font-weight: 700;
+      border-color: var(--accent); background: var(--accent-bg); color: var(--accent); font-weight: 500;
     }
 
     .nav { display: flex; justify-content: flex-end; padding-top: 8px; }
@@ -140,18 +147,18 @@
       position: relative; overflow: hidden;
       padding: 11px 28px; border: none; border-radius: 50px;
       font-family: var(--font-body), sans-serif; font-size: 0.88rem;
-      font-weight: 700; cursor: pointer; transition: all 0.18s;
+      font-weight: 500; cursor: pointer; transition: all 0.18s;
     }
-    .btn-next { background: var(--text); color: #ffffff; }
-    .btn-next:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-next { background: var(--text); color: var(--bg); }
+    .btn-next:hover { opacity: 0.88; transform: translateY(-1px); }
     .btn-next:active { transform: scale(0.98); }
     .btn-finish { background: var(--accent); color: #ffffff; }
-    .btn-finish:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .btn-finish:hover { filter: brightness(1.1); transform: translateY(-1px); }
     .btn-finish:active { transform: scale(0.98); }
 
     .btn-next::before, .btn-finish::before {
       content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
-      background: linear-gradient(105deg, transparent, rgba(255,255,255,0.2), transparent);
+      background: linear-gradient(105deg, transparent, rgba(255,255,255,0.16), transparent);
       transition: left 0.5s ease; pointer-events: none;
     }
     .btn-next:hover::before, .btn-finish:hover::before { left: 160%; }
@@ -161,23 +168,23 @@
       .beam-wrap { animation: none; background: var(--border); }
       .progress-fill { box-shadow: none; }
     }
-    @media (max-width: 520px) { .card { padding: 32px 24px 40px; } }
+    @media (max-width: 520px) { .card { padding: 32px 24px 40px; } .form-title { font-size: 2.2rem; } }
   </style>
 </head>
 <body>
 
-<form name="cleaning-intake" netlify netlify-honeypot="bot-field" hidden>
+<form name="tattoo-intake" netlify netlify-honeypot="bot-field" hidden>
+  <input name="first-name"/><input name="last-name"/><input name="business-name"/>
   <input name="q1"/><input name="q2"/><input name="q3"/>
   <input name="q4"/><input name="q5"/><input name="q6"/>
   <input name="q7"/><input name="q8"/><input name="q9"/><input name="q10"/>
-  <input name="first-name"/><input name="last-name"/><input name="business-name"/>
 </form>
 <div class="wrap">
   <div class="form-brand">Devon Reyes · Web Design</div>
   <div class="beam-wrap">
     <div class="card">
       <h1 class="form-title">Just some quick questions before our Zoom consultation.</h1>
-      <p class="form-sub">No stress. Fill in what you know, leave the rest blank, and we'll handle everything else on the call.</p>
+      <p class="form-sub">No pressure. Answer what you want, leave the rest, and we'll talk through everything on the call.</p>
 
       <div class="progress-wrap">
         <div class="progress-track"><div class="progress-fill" id="pFill"></div></div>
@@ -185,7 +192,7 @@
       </div>
 
       <div class="page active" id="p1">
-                <div class="question" style="margin-bottom:28px">
+        <div class="question" style="margin-bottom:28px">
           <div class="q-num">Your Info</div>
           <div class="name-row" style="margin-bottom:10px">
             <div>
@@ -203,18 +210,18 @@
         <div class="section-label">Let's start with the basics</div>
         <div class="question">
           <div class="q-num">Question 1</div>
-          <div class="q-text">What services do you offer — residential cleaning, commercial, lawn care, landscaping, or a mix?</div>
-          <textarea name="q1" placeholder="e.g. house cleaning, move-out cleans, and lawn maintenance / landscaping and irrigation / all of the above..."></textarea>
+          <div class="q-text">What styles do you (or your artists) specialize in?</div>
+          <textarea name="q1" placeholder="e.g. traditional, blackwork, fine line, realism, neo-trad — or a mix..."></textarea>
         </div>
         <div class="question">
           <div class="q-num">Question 2</div>
-          <div class="q-text">What areas or neighborhoods do you cover?</div>
-          <textarea name="q2" placeholder="e.g. Cypress, Buena Park, and surrounding areas / all of Orange County / mainly residential neighborhoods in..."></textarea>
+          <div class="q-text">Is this a solo artist setup, or a full shop with multiple artists?</div>
+          <textarea name="q2" placeholder="e.g. just me, or I have two other artists, or it's a full walk-in shop..."></textarea>
         </div>
         <div class="question">
           <div class="q-num">Question 3</div>
-          <div class="q-text">Do you want people to be able to request a quote directly from the site?</div>
-          <textarea name="q3" placeholder="e.g. yes, a quick quote form would be great / I'd rather they call first / a form that notifies me works..."></textarea>
+          <div class="q-text">How do people typically book with you — DMs, a form, walk-ins, or consultations first?</div>
+          <textarea name="q3" placeholder="e.g. DMs on Instagram, or people walk in, or consultation then booking..."></textarea>
         </div>
         <div class="nav"><button class="btn-next" onclick="goTo(2)">Continue</button></div>
       </div>
@@ -223,29 +230,29 @@
         <div class="section-label">Now the look and feel</div>
         <div class="question">
           <div class="q-num">Question 4</div>
-          <div class="q-text">How would you describe your brand?</div>
+          <div class="q-text">How would you describe the vibe of your shop?</div>
           <div class="vibe-options">
-            <label class="vibe-opt"><input type="radio" name="q4"><span>Trustworthy &amp; Reliable</span></label>
-            <label class="vibe-opt"><input type="radio" name="q4"><span>Clean &amp; Professional</span></label>
-            <label class="vibe-opt"><input type="radio" name="q4"><span>Friendly &amp; Local</span></label>
-            <label class="vibe-opt"><input type="radio" name="q4"><span>Premium &amp; Thorough</span></label>
+            <label class="vibe-opt"><input type="radio" name="q4"><span>Dark &amp; Bold</span></label>
+            <label class="vibe-opt"><input type="radio" name="q4"><span>Clean &amp; Minimal</span></label>
+            <label class="vibe-opt"><input type="radio" name="q4"><span>Artsy &amp; Eclectic</span></label>
+            <label class="vibe-opt"><input type="radio" name="q4"><span>Gritty &amp; Real</span></label>
           </div>
         </div>
         <div class="question">
           <div class="q-num">Question 5</div>
-          <div class="q-text">Do you have a logo and brand colors, or should I put something together?</div>
-          <textarea name="q5" placeholder="e.g. I've got a logo on my truck / open to something new / I like green and white, that's all I know..."></textarea>
+          <div class="q-text">Do you have a logo and brand direction, or should I build the look from scratch?</div>
+          <textarea name="q5" placeholder="e.g. I've got a logo I use, here it is / open to you designing something fresh..."></textarea>
         </div>
         <div class="question">
           <div class="q-num">Question 6</div>
           <div class="q-text">Do you have photos available for me to use for your site?</div>
-          <div class="q-hint">Before/afters, your team on the job, a finished lawn or clean space — those do a lot of the work for you.</div>
-          <textarea name="q6" placeholder="e.g. yes I have some before/afters / I'll have to take some on the next job / not really, we can use stock..."></textarea>
+          <div class="q-hint">Portfolio shots are everything for a tattoo site. Even just a handful of your best work makes a massive difference.</div>
+          <textarea name="q6" placeholder="e.g. yes, I'll send portfolio shots / I'll pull from my Instagram / I don't have many organized..."></textarea>
         </div>
         <div class="question">
           <div class="q-num">Question 7</div>
-          <div class="q-text">Any cleaning or landscaping company site you think is done right?</div>
-          <textarea name="q7" placeholder="e.g. I've seen a local company with a clean site, or I like how [company] presents their services..."></textarea>
+          <div class="q-text">Any tattoo artist or shop whose site or brand aesthetic you respect?</div>
+          <textarea name="q7" placeholder="e.g. I like how [artist] presents their work, or there's a shop in Japan with a clean site..."></textarea>
         </div>
         <div class="nav"><button class="btn-next" onclick="goTo(3)">Continue</button></div>
       </div>
@@ -254,18 +261,18 @@
         <div class="section-label">Last few, the important ones</div>
         <div class="question">
           <div class="q-num">Question 8</div>
-          <div class="q-text">What do you want someone to do on your site — call you, request a quote, or learn about your services first?</div>
-          <textarea name="q8" placeholder="e.g. I want them to request a quote right away / call me directly / see the services then reach out..."></textarea>
+          <div class="q-text">What's the main goal for the site — show portfolio, get consultation requests, or both?</div>
+          <textarea name="q8" placeholder="e.g. I want the portfolio front and center, bookings are secondary / I want to generate inquiries..."></textarea>
         </div>
         <div class="question">
           <div class="q-num">Question 9</div>
-          <div class="q-text">What makes your service different from other companies in the area?</div>
-          <textarea name="q9" placeholder="e.g. consistency, attention to detail, long-term clients, how thorough we are, how we treat people's homes..."></textarea>
+          <div class="q-text">What makes your work or your shop different from others?</div>
+          <textarea name="q9" placeholder="e.g. the style, the precision, the experience for the client, the culture in the shop..."></textarea>
         </div>
         <div class="question">
           <div class="q-num">Question 10</div>
-          <div class="q-text">Is there something about the quality of your work or your team that a website has never shown the way it deserves?</div>
-          <textarea name="q10" placeholder="e.g. how reliable we are, the care we put into every job, the results that keep clients coming back..."></textarea>
+          <div class="q-text">Is there anything about your craft that you feel like no website has ever shown the right way?</div>
+          <textarea name="q10" placeholder="e.g. the process, the intention behind the work, what a session actually feels like..."></textarea>
         </div>
         <div class="nav"><button class="btn-finish" onclick="finish()">All finished?</button></div>
       </div>
@@ -309,10 +316,10 @@ function finish() {
   const vibe = document.querySelector('input[name="q4"]:checked');
 
   const fd = new FormData();
-  fd.append('form-name', 'cleaning-intake');
-  fd.append('first-name', document.querySelector('input[type=\"text\"][name=\"first-name\"]')?.value || '');
-  fd.append('last-name', document.querySelector('input[type=\"text\"][name=\"last-name\"]')?.value || '');
-  fd.append('business-name', document.querySelector('input[type=\"text\"][name=\"business-name\"]')?.value || '');
+  fd.append('form-name', 'tattoo-intake');
+  fd.append('first-name', document.querySelector('input[type="text"][name="first-name"]')?.value || '');
+  fd.append('last-name', document.querySelector('input[type="text"][name="last-name"]')?.value || '');
+  fd.append('business-name', document.querySelector('input[type="text"][name="business-name"]')?.value || '');
   const names = ['q1','q2','q3','q5','q6','q7','q8','q9','q10'];
   textareas.forEach((el, i) => fd.append(names[i], el.value));
   fd.append('q4', vibe ? vibe.nextElementSibling.textContent : '');
@@ -325,7 +332,7 @@ function finish() {
   fetch('https://api.reyeswebdesign.com/submit-intake', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(fd)) })
     .finally(() => {
       const card = document.querySelector('.card');
-      card.innerHTML = `<div style="text-align:center;padding:60px 20px"><div style="font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:16px">You're all set.</div><p style="color:var(--text-muted);font-size:0.95rem;line-height:1.7">I'll review everything before our call.<br>Talk to you soon!</p></div>`;
+      card.innerHTML = `<div style="text-align:center;padding:60px 20px"><div style="font-size:2.4rem;font-weight:800;color:var(--text);letter-spacing:-0.02em;margin-bottom:16px">You're all set.</div><p style="color:var(--text-muted);font-size:0.95rem;line-height:1.7">I'll review everything before our call.<br>Talk soon.</p></div>`;
     });
 }
 window.addEventListener('load', () => {

@@ -322,7 +322,7 @@ function finish() {
   const btn = document.querySelector('.btn-finish');
   btn.textContent = 'Sending...'; btn.disabled = true; btn.style.opacity = '0.6';
 
-  fetch('/api/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(fd)) })
+  fetch('https://api.reyeswebdesign.com/submit-intake', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(fd)) })
     .finally(() => {
       const card = document.querySelector('.card');
       card.innerHTML = `<div style="text-align:center;padding:60px 20px"><div style="font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:16px">You're all set.</div><p style="color:var(--text-muted);font-size:0.95rem;line-height:1.7">I'll review everything before our call.<br>Talk to you soon!</p></div>`;
